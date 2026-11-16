@@ -1,8 +1,5 @@
+from ticket_processor import process_ticket, get_ticket_id
 
-def process_ticket(ticket):
-    message = f"Ticket {ticket['id']}: {ticket.get('description') or 'No description provided'}"
-
-    return message
 
 def get_ticket_priority(ticket_id: int) -> str:
     if ticket_id == 1042:
@@ -13,26 +10,44 @@ def get_ticket_priority(ticket_id: int) -> str:
         return "Low"
 
 
-def get_ticket_id(ticket: dict) -> int | None:
-    try:
-        ticket_id = ticket["id"]
 
-        if not isinstance(ticket_id, int):
-            return None
+tickets = [
+    {
+        "id": 1042,
+        "description": "VPN connection failed",
+        "priority": "High"
+    },
+    {
+        "id": 1043,
+        "description": "Printer not working",
+        "priority": "Low"
+    },
+    {
+        "id": 1044,
+        "description": "Cannot access company email",
+        "priority": "Medium"
+    },
+    {
+        "id": "INVALID",
+        "description": "Unable to log in",
+        "priority": "High"
+    }
+]
 
-        return ticket_id
+for ticket in tickets:
+    ticket_id = get_ticket_id(ticket)
 
-    except KeyError:
-        return None
-
-
-ticket = {"id": "1042"}
-
-try:
-    ticket_id = ticket["id"]
-
-    if not isinstance(ticket_id, int):
+    if ticket_id is None:
         print("Invalid ticket ID")
+        continue
+    processed_ticket = process_ticket(ticket)
+    print(processed_ticket)
 
-except KeyError:
-    print("Missing ticket ID")
+
+#     ticket_id = ticket["id"]
+
+#     if not isinstance(ticket_id, int):
+#         print("Invalid ticket ID")
+
+# except KeyError:
+#     print("Missing ticket ID")

@@ -181,36 +181,52 @@ The current project requires no third-party Python dependencies.
 - Exceptions versus returned error values.
 - Input validation and data contracts.
 
-### Day 2 — Python Data Structures and Code Organization
+### Day 2 — Python Data Structures, Modules, and Unit Testing
 
-**Status:** Not started
+**Status:** Completed
 
-Planned: lists, iteration, reusable modules, and introductory automated testing.
+#### Concepts Learned
+- Python lists and zero-based indexing.
+- Iteration using `for` loops.
+- Processing collections of dictionaries.
+- Separation of concerns and reusable functions.
+- Organizing code using Python modules and imports.
+- `continue` versus `return`.
+- Writing unit tests with PyTest.
+- Arrange–Act–Assert testing methodology.
 
-## Engineering Principles
+#### Features Implemented
+- Extended the application to process multiple IT support tickets.
+- Created `ticket_processor.py` to separate ticket-processing logic from `main.py`.
+- Implemented ticket ID validation before processing.
+- Added logic to skip tickets containing invalid IDs.
+- Created `tests/test_ticket_processor.py`.
+- Installed PyTest 9.2.0.
 
-This project emphasizes:
+#### Automated Testing Results
 
-1. Reliability over unnecessary complexity.
-2. Separation of deterministic application logic from AI decision-making.
-3. Runtime validation of external data.
-4. Secure tool execution and least-privilege permissions.
-5. Human oversight of sensitive operations.
-6. Automated testing and meaningful quality gates.
-7. Incremental development with documented decisions.
+| Test | Result |
+|---|---|
+| Valid ticket ID | PASSED |
+| Missing ticket ID | PASSED |
+| Invalid ticket ID type | PASSED |
 
-## Project Purpose
+**Total: 3 tests passed, 0 failed.**
 
-This is a hands-on learning and portfolio project intended to demonstrate applied Python engineering, AI system architecture, enterprise integration patterns, testing, and technical delivery.
+#### Engineering Takeaways
+- Modularity improves application maintainability and testability.
+- Functions should have clearly defined responsibilities.
+- Input validation should occur before business logic executes.
+- Invalid individual records should not necessarily interrupt an entire batch.
+- Automated tests protect existing functionality against regressions.
 
-It is not currently a production application or a deployed customer implementation.
+#### Areas for Improvement
+- Add additional edge-case validation.
+- Improve error reporting for rejected tickets.
+- Introduce structured ticket models.
+- Expand automated coverage to ticket formatting and batch processing.
 
-## Author
+#### Next Session
+**Day 3 — FastAPI and Backend Development**
 
-**Luis Hernandez**
-
-QA engineering and technical leadership professional expanding into Forward Deployed Engineering, AI integrations, and applied AI development.
-
-- GitHub: https://github.com/lufhernaV2
-- Portfolio: https://heyitsluis.click
-- LinkedIn: https://www.linkedin.com/in/lufherna/
+Convert the existing Python ticket-processing application into an HTTP API using FastAPI and Pydantic.
